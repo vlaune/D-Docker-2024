@@ -3,7 +3,7 @@ Antes de entendermos o que é o Docker, precisamos dar um passo para trás e ent
 
 Vamos colocar isso em um contexto Pokemon para que possa ficar mais fácil o entendimento, imagine a fazenda Linus (podemos entender como um servidor/máquina), o dono dela é o “Pinguim Linux Fazendeiro”, que possui como funcionários a Clefable, o Nidoking e o Charizard, são os PokeFuncionários (também conhecidos como Módulos do Linux), e cada funcionário possui uma função específica ao construir os cercadinhos (containers).
 
-![fazenda-linux](/day_1_fundamentos_do_Docker_e_primeiros_passos/imgs/fazenda-linux.jpg)
+![fazenda-linux](./imgs/fazenda-linux.jpg)
 
 A Miltank e o Taurus estão dentro dos cercadinhos (que você já sabe que é um container). Essa cerca impede que os Pokemons que estão dentro visualizem o mundo externo, na verdade, eles acreditam que o mundo inteiro é o cercadinho. A Miltank e o Taurus possuem seus próprios Centros Pokemon, suas berries e suas sujeiras, estes podem ser entendidos como os recursos que citamos acima quando falamos o que é isolado. Porém, é super importante notar que tanto os cercadinhos compartilham o mesmo terreno da Fazendo Linus.
 
@@ -53,7 +53,7 @@ Quando rodamos o `docker run hello-world`, aconteceu o seguinte: Passamos o coma
 
 E vamos aproveitar já esse espaço para falar sobre o Docker Engine, que foi o que você instalou na sua máquina. Lembra quando falamos lá na fazenda Linus que o Docker era um facilitador, um organizador? Pois bem, por que o Docker não é a runtime, ele não vai lá e roda o container diretamente.
 
-![docker-engine-containerd-runc](/day_1_fundamentos_do_Docker_e_primeiros_passos/imgs/docker-engine-containerd-runc.png)
+![docker-engine-containerd-runc](./imgs/docker-engine-containerd-runc.png)
 
 Todo o ciclo de vida do container é feito pelo containerd (daemon), que funciona como um intermediário entre o Docker Engine e o runc.
 
@@ -68,6 +68,6 @@ Em resumo: *"Uma imagem são camadas, que juntas foram um container parado."*
 
 Uma imagem é construída a partir de um **Dockerfile** (arquivo de texto que passamos instruções para buildar uma imagem de container), cada instrução passada ao Dockerfile cria uma camada para imagem. Esses comandos nós vamos ver depois, então sem estresse agora.
 
-![imagem-container](/day_1_fundamentos_do_Docker_e_primeiros_passos/imgs/imagem-container.png)
+![imagem-container](./imgs/imagem-container.png)
 
 Uma imagem é completamente Read-Only, porém, quando ele é executada (quando vamos criar um container) é adicionada uma nova camada no topo, esta é Read-Write. Essa camada é única por instância do container, permitindo que ele escreva e modifique arquivos enquanto está em execução, não afetando a imagem base (camadas read-only).
