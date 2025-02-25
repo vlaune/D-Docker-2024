@@ -51,15 +51,16 @@ O **Registry** é para onde vamos enviar e baixar nossas imagens, temos serviço
 
 Quando rodamos o `docker run hello-world`, aconteceu o seguinte: Passamos o comando no Client que enviou para o Host, este verificou se existia a imagem do container que você pediu, se não existia no host, ele solicitou a imagem no DockerHub, que depois de baixado e salvo, ele executou a imagem gerando o container.
 
-E vamos aproveitar já esse espaço para falar sobre o Docker Engine, que foi o que você instalou na sua máquina. Lembra quando falamos lá na fazenda Linus que o Docker era um facilitador, um organizador? Pois bem, por que o Docker não é a runtime, ele não vai lá e roda o container diretamente.
+E vamos aproveitar já esse espaço para aprofundar um pouco mais sobre o Docker Engine como um todo, que foi o que você instalou na sua máquina. Lembra quando falamos lá na fazenda Linus que o Docker era um facilitador, um organizador? Pois bem, por que o Docker não é a runtime, ele não vai lá e roda o container diretamente.
 
 ![docker-engine-containerd-runc](./imgs/docker-engine-containerd-runc.png)
 
-Todo o ciclo de vida do container é feito pelo containerd (daemon), que funciona como um intermediário entre o Docker Engine e o runc.
+Docker Engine é a combinação do Docker Daemon, Docker Engine Rest API e Docker CLI.
 
-O containerd é responsável por criar, iniciar, parar e monitor containers, também por fazer download de imagens e construir containers a partir delas. Também responsável por chamar o runc para realizar a execução real de containers.
-
-É o runtime que interage com o kernel do Linux, lembra dos PokeFuncionários? É o runc que conversa diretamente com eles para construir as cercas, os containers.
+Mas para entender como o Docker funciona, como ele gerencia os containers de fato, precisamos conhecer 3 componentes:
+- dockerd: Processo que gerencia o Docker como um todo. Quem é recebe as solicitações do Client, cuida de aspectos de alto nível (rede, criação de volumes, manipulação de imagens, configurações de containers) e delega a execução de containers e o gerenciamento de imagens para o containerd.
+- containerd: É um runtime de container de alto nível, que gerencia o ciclo de vida, que coordena a execução e o gerenciamento de containers, imagens e volumes. E utiliza o runct para executar os containers. Ele também lida com o download, armazenamento e manipulação de imagens de containers, gerencia o início, pausa, parada e remoção de containers, gerencia também volumes de armazenamento para containers.
+- runc: É o runtime de containers de baixo nível, é o runtime que interage com o kernel do Linux, lembra dos PokeFuncionários? É o runc que conversa diretamente com eles para construir as cercas... ops, os containers.
 
 ## O que são imagens de containers?
 Acredito que depois de todo esse contéudo que vimos, está faltando falar de Imagens de containers, você pode estar se perguntando se é uma foto de um container, um .png, .jpeg? E não, e sim também... enfim... você vai entender.
