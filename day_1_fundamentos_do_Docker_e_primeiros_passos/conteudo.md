@@ -61,18 +61,13 @@ O containerd é responsável por criar, iniciar, parar e monitor containers, tam
 
 É o runtime que interage com o kernel do Linux, lembra dos PokeFuncionários? É o runc que conversa diretamente com eles para construir as cercas, os containers.
 
-Acredito que agora ficou tudo mais claro, já sabemos quem são os componentes do Docker e como ele funciona. Vamos agora ver alguns comandos que podemos passar no `Docker Client`.
+## O que são imagens de containers?
+Acredito que depois de todo esse contéudo que vimos, está faltando falar de Imagens de containers, você pode estar se perguntando se é uma foto de um container, um .png, .jpeg? E não, e sim também... enfim... você vai entender.
 
-## Criando e Gerenciando os primeiros containers
-Antes de seguir nesse próximo tópico aqui, vou pedir mais um favor para você caro amigo. Digite o seguinte no terminal:
-`docker --help`
- 
- 
- comandos para gerenciar containers
+Em resumo: *"Uma imagem são camadas, que juntas foram um container parado."*
 
-- docker container ls
-- docker image ls 
-- ls 
-- ls -a
+Uma imagem é construída a partir de um **Dockerfile** (arquivo de texto que passamos instruções para buildar uma imagem de container), cada instrução passada ao Dockerfile cria uma camada para imagem. Esses comandos nós vamos ver depois, então sem estresse agora.
 
+![imagem-container](/day_1_fundamentos_do_Docker_e_primeiros_passos/imgs/imagem-container.png)
 
+Uma imagem é completamente Read-Only, porém, quando ele é executada (quando vamos criar um container) é adicionada uma nova camada no topo, esta é Read-Write. Essa camada é única por instância do container, permitindo que ele escreva e modifique arquivos enquanto está em execução, não afetando a imagem base (camadas read-only).
